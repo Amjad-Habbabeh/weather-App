@@ -1,33 +1,60 @@
-import React from 'react';
-import { TiDeleteOutline } from 'react-icons/ti';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { TiDeleteOutline } from 'react-icons/ti'
+import { Link } from 'react-router-dom'
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
 
 const CityWeather = ({ name, coord, sys, main, weather, handleDelete, id }) => {
   return (
-    <div className="cityInfo" id={id}>
-      <div className="city-weather">
-        <div className="remove-div">
-          <Link to={`/${id}`}>
-            {name}, {sys.country}
-          </Link>
-
-          <button className="remove-btn" onClick={handleDelete}>
-            <TiDeleteOutline className="delete" />
-          </button>
-        </div>
-        <div className="weather-desc">
-          <h3>{weather[0].main}</h3>
-          <p style={{ fontWeight: 'bold' }}>{weather[0].description}</p>
-        </div>
-        <div className="temp">
-          <p>min temp: {main.temp_min}°C</p>
-          <p>max temp: {main.temp_max}°C</p>
-          <p>
-            location: {coord.lon} , {coord.lat}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
-export default CityWeather;
+    <Container fluid='md' className='py-3 w-75  '>
+      <Card id={id} className='customCard'>
+        <Card.Header className='cardHeader'>
+          <Row>
+            {' '}
+            <Col>
+              <Link to={`/${id}`}>
+                <h2>
+                  {name}, {sys.country}
+                </h2>
+              </Link>
+            </Col>
+            <Col>
+              <Button
+                variant='danger'
+                className='remove-btn px-2 float-right '
+                onClick={handleDelete}
+              >
+                <TiDeleteOutline className='delete' />
+              </Button>
+            </Col>
+          </Row>
+        </Card.Header>
+        <Card.Body>
+          <Row>
+            <Col style={{ alignSelf: 'center' }}>
+              <Card.Title style={{ textAlign: 'left' }} className='px-4'>
+                {weather[0].main}{' '}
+              </Card.Title>
+            </Col>
+            <Col>
+              <Image
+                src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+                fluid
+              />
+            </Col>
+          </Row>
+          <Card.Subtitle style={{ textAlign: 'left' }} className='px-4'>
+            {weather[0].description}
+          </Card.Subtitle>
+          <Col className='temp'>
+            <p>min temp: {main.temp_min}°C</p>
+            <p>max temp: {main.temp_max}°C</p>
+            <p>
+              location: {coord.lon} , {coord.lat}
+            </p>
+          </Col>
+        </Card.Body>
+      </Card>
+    </Container>
+  )
+}
+export default CityWeather

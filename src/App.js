@@ -1,27 +1,28 @@
-import './App.css';
-import Weather from './components/Weather';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import City from './components/City';
-import NotFound from './components/NotFound';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Weather from './components/Weather'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import City from './components/City'
+import NotFound from './components/NotFound'
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Weather />
           </Route>
-          <Route exact path="/:id">
+          <Route exact path='/:id'>
             <City />
           </Route>
-          <Route exact path="*">
+          <Route exact path='*'>
             <NotFound />
           </Route>
         </Switch>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

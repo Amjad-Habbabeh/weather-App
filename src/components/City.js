@@ -1,31 +1,33 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Chart from './Chart';
-import { useFetch } from './hooks/useFetch';
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
+import Chart from './Chart'
+import { useFetch } from './hooks/useFetch'
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
+import Loader from './Loader'
 
 const City = () => {
-  const { id } = useParams();
-  const cityId = parseInt(id);
+  const { id } = useParams()
+  const cityId = parseInt(id)
 
-  const Api_key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+  const Api_key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
   const url = `
   https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${Api_key}&units=metric
-  `;
+  `
 
-  const [isLoading, fetchedData, hasError] = useFetch(url, [url]);
-  const city = fetchedData?.city;
-  const list = fetchedData?.list;
-  let fiveDaysWeather = [];
+  const [isLoading, fetchedData, hasError] = useFetch(url, [url])
+  const city = fetchedData?.city
+  const list = fetchedData?.list
+  let fiveDaysWeather = []
   if (list) {
     for (let i = 0; i < list.length; i = i + 8) {
-      fiveDaysWeather.push(list[i]);
+      fiveDaysWeather.push(list[i])
     }
   }
 
   return (
-    <div>
+    <Container className='my-5 '>
       <h1>5 day Forecast</h1>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {hasError && (
         <p>
           Sorry! failed to fetch the wither history for {city.name} ..please try
@@ -33,15 +35,15 @@ const City = () => {
         </p>
       )}
       {!hasError && fiveDaysWeather.length === 5 && (
-        <div>
+        <Container fluid='sm'>
           <h2>{city.name}</h2>
           <Chart fiveDaysWeather={fiveDaysWeather} />
-        </div>
+        </Container>
       )}
 
-      <Link to="/">Go Back</Link>
-    </div>
-  );
-};
+      <Link to='/'>Go Back</Link>
+    </Container>
+  )
+}
 
-export default City;
+export default City

@@ -1,5 +1,7 @@
 # Weather App as a Single Page Application
 
+using https://api.openweathermap.org/ API to fetch city weather!
+
 ## The SPA with 2 pages (routes):
 
 - Home page: you can type the city in the search box to fetch it's weather, and

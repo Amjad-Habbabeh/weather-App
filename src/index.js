@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { AppContextProvider } from './Context/App_context';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+import { AppContextProvider } from './Context/App_context'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,4 +11,4 @@ ReactDOM.render(
     </AppContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)

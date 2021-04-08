@@ -1,40 +1,42 @@
-import React, { useState, useContext, useEffect } from 'react';
-import CityWeather from './CityWeather';
-import Search from './Search';
-import Message from './Message';
-import { AppContext } from '../Context/App_context';
-import { useFetch } from './hooks/useFetch';
+import React, { useState, useContext, useEffect } from 'react'
+import CityWeather from './CityWeather'
+import Search from './Search'
+import Message from './Message'
+import { AppContext } from '../Context/App_context'
+import { useFetch } from './hooks/useFetch'
+import { Container, Badge } from 'react-bootstrap'
+import Loader from './Loader'
 
 const defaultState = {
   hasMessage: false,
   hasError: false,
   message: `No city input yet, type in a city and click search!`,
   search: false,
-};
+}
 const Weather = () => {
-  const { fetchCities, setFetchCities } = useContext(AppContext);
-  const [cityName, setCityName] = useState('');
-  const [newUrl, setNewUrl] = useState(null);
-  const [fetching, setFetching] = useState(false);
+  const { fetchCities, setFetchCities } = useContext(AppContext)
+  const [cityName, setCityName] = useState('')
+  const [newUrl, setNewUrl] = useState(null)
+  const [fetching, setFetching] = useState(false)
   const [isLoading, fetchedData, hasError, setHasError] = useFetch(newUrl, [
     newUrl,
-  ]);
-  const [state, setState] = useState(defaultState);
-  const Api_key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+  ])
+  const [state, setState] = useState(defaultState)
+  const Api_key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
   useEffect(() => {
-    setHasError(false);
-    console.log(hasError);
+    setHasError(false)
+    console.log(hasError)
 
     if (fetching && fetchedData) {
-      setFetchCities([fetchedData, ...fetchCities]);
+      setFetchCities([fetchedData, ...fetchCities])
       setState({
         ...state,
         search: true,
         message: `${cityName} weather added!`,
-      });
+      })
     }
-    setFetching(false);
-  }, [fetchedData, setCityName, hasError]);
+    setFetching(false)
+  }, [fetchedData, setCityName, hasError])
   useEffect(() => {
     if (hasError && newUrl) {
       setState({
@@ -42,50 +44,52 @@ const Weather = () => {
         hasError: true,
         hasMessage: true,
         message: `failed to fetch this city's weather!`,
-      });
-      closeMessage();
+        variant: 'danger',
+      })
+      closeMessage()
     }
-  }, [newUrl, hasError, state.search, setCityName]);
+  }, [newUrl, hasError, state.search, setCityName])
 
   const handlesearch = (e, value) => {
     const url = `
-  https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${Api_key}&units=metric `;
+  https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${Api_key}&units=metric `
 
-    e.preventDefault();
-    setState({ ...state, search: true });
+    e.preventDefault()
+    setState({ ...state, search: true })
     if (value) {
       if (fetchCities.length > 0) {
         const existCity = fetchCities.filter(
           (city) => city.name.toUpperCase() === value.toUpperCase()
-        );
+        )
         if (!existCity[0]) {
-          setFetching(true);
-          setNewUrl(url);
+          setFetching(true)
+          setNewUrl(url)
           setState({
             ...state,
             search: true,
             hasMessage: true,
             message: `city weather added!`,
-          });
-          closeMessage();
+          })
+          closeMessage()
         } else {
           setState({
             ...state,
             message: `City information already here `,
             hasMessage: true,
-          });
-          closeMessage();
+            variant: 'danger',
+          })
+          closeMessage()
         }
       } else {
-        setFetching(true);
-        setNewUrl(url);
+        setFetching(true)
+        setNewUrl(url)
         setState({
           ...state,
           search: true,
           hasMessage: true,
           message: `city weather added!`,
-        });
-        closeMessage();
+        })
+        closeMessage()
       }
     } else if (!value && fetchCities.length > 0) {
       setState({
@@ -93,8 +97,8 @@ const Weather = () => {
         search: true,
         message: `Please, inter a value`,
         hasMessage: true,
-      });
-      closeMessage();
+      })
+      closeMessage()
     } else {
       setState({
         ...state,
@@ -102,41 +106,46 @@ const Weather = () => {
         hasMessage: true,
         message: `No city input yet, type in a city and click search!`,
         search: false,
-      });
+        variant: 'danger',
+      })
 
-      closeMessage();
+      closeMessage()
     }
-  };
+  }
 
   const closeMessage = () => {
     setTimeout(() => {
-      setState({ ...state, hasMessage: false, hasError: false });
-    }, 1000);
-    setCityName('');
-  };
+      setState({ ...state, hasMessage: false, hasError: false })
+    }, 1000)
+    setCityName('')
+  }
 
   const handleDelete = (id) => {
-    const deletedCity = fetchCities.filter((city) => city.id === id);
-    const newCities = fetchCities.filter((city) => city.id !== id);
-    setFetchCities(newCities);
+    const deletedCity = fetchCities.filter((city) => city.id === id)
+    const newCities = fetchCities.filter((city) => city.id !== id)
+    setFetchCities(newCities)
 
     setState({
       ...state,
       search: false,
       message: `${deletedCity[0].name} weather information deleted`,
       hasMessage: true,
-    });
-    closeMessage();
-  };
+      variant: 'danger',
+    })
+    closeMessage()
+  }
 
   return (
     <>
-      <div className="container">
-        <div className="weather">
-          <h1>Weather</h1>
-          {isLoading && <Message message={`Loading...`} />}
+      <Container className='my-5 '>
+        <Container className='weather'>
+          <h1 style={{ textAlign: 'center', padding: '2rem' }}>Weather App</h1>
+          {isLoading && <Loader />}
           {state.hasMessage && !isLoading && (
-            <Message message={state.message} />
+            <Message
+              message={state.message}
+              variant={state.variant ? state.variant : 'success'}
+            />
           )}
           <Search
             handleSearch={handlesearch}
@@ -162,12 +171,12 @@ const Weather = () => {
                   weather={city.weather}
                   handleDelete={() => handleDelete(city.id)}
                 />
-              );
+              )
             })}
-        </div>
-      </div>
+        </Container>
+      </Container>
     </>
-  );
-};
+  )
+}
 
-export default Weather;
+export default Weather
