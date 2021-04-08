@@ -94,6 +94,7 @@ min-height: 80vh;
   max-width: 3rem;
   outline: none;
   cursor: pointer;
+  z-index: 100;
 }
 .delete {
   width: 2rem;
