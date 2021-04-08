@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Chart from './Chart'
 import { useFetch } from './hooks/useFetch'
-import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import Loader from './Loader'
 
 const City = () => {

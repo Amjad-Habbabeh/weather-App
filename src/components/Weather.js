@@ -4,7 +4,7 @@ import Search from './Search'
 import Message from './Message'
 import { AppContext } from '../Context/App_context'
 import { useFetch } from './hooks/useFetch'
-import { Container, Badge } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import Loader from './Loader'
 
 const defaultState = {

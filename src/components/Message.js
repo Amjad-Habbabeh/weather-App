@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Alert } from 'react-bootstrap'
+import { Container, Alert } from 'react-bootstrap'
 
 function Message({ message, variant }) {
   return (
