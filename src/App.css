@@ -88,7 +88,6 @@ min-height: 80vh;
   justify-content: space-between;
 }
 .remove-btn {
-  background-color: transparent;
   border: none;
   max-width: 3rem;
   outline: none;
