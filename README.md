@@ -11,6 +11,9 @@ using https://api.openweathermap.org/ API to fetch city weather!
 
 ### Demo
 
+<img src='./WeatherApp.jpg' alt='WeatherApp' >
+
+
 Online Deployment of this project is available at
 https://pedantic-lamport-6687b4.netlify.app/
 
