@@ -37,7 +37,7 @@ const CityWeather = ({ name, coord, sys, main, weather, handleDelete, id }) => {
             </Col>
             <Col>
               <Image
-                src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
                 fluid
               />
             </Col>
