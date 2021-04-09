@@ -8,26 +8,28 @@ const CityWeather = ({ name, coord, sys, main, weather, handleDelete, id }) => {
   return (
     <Container fluid='md' className='py-3 w-75  '>
       <Card id={id} className='customCard'>
-        <Link to={`/${id}`} style={{ textDecoration: 'none' }}>
-          <Card.Header className='cardHeader'>
-            <Row>
-              {' '}
+        <Card.Header className='cardHeader'>
+          <Row>
+            {' '}
+            <Link to={`/${id}`} style={{ textDecoration: 'none' }}>
               <Col>
                 <h2>
                   {name}, {sys.country}
                 </h2>
               </Col>
-              <Col>
-                <Button
-                  variant='danger'
-                  className='remove-btn px-2 float-right '
-                  onClick={handleDelete}
-                >
-                  <MdDelete />
-                </Button>
-              </Col>
-            </Row>
-          </Card.Header>
+            </Link>
+            <Col>
+              <Button
+                variant='danger'
+                className='remove-btn px-2 float-right '
+                onClick={handleDelete}
+              >
+                <MdDelete />
+              </Button>
+            </Col>
+          </Row>
+        </Card.Header>
+        <Link to={`/${id}`} style={{ textDecoration: 'none' }}>
           <Card.Body style={{ color: '#dcb591' }}>
             <Row>
               <Col style={{ alignSelf: 'center' }}>
