@@ -14,7 +14,7 @@ const City = () => {
   https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${Api_key}&units=metric
   `
 
-  const [isLoading, fetchedData, hasError] = useFetch(url, [url])
+  const [isLoading, fetchedData, hasError] = useFetch(url, url)
   const city = fetchedData?.city
   const list = fetchedData?.list
   let fiveDaysWeather = []

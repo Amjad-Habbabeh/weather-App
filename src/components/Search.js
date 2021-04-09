@@ -31,6 +31,7 @@ const Search = ({ handleSearch, cityName, setCityName }) => {
                 placeholder='Inter City..'
                 onChange={(e) => setCityName(e.target.value)}
                 value={cityName}
+                autoComplete='off'
               />
             </InputGroup>
           </Col>

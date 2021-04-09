@@ -18,14 +18,14 @@ const Weather = () => {
   const [cityName, setCityName] = useState('')
   const [newUrl, setNewUrl] = useState(null)
   const [fetching, setFetching] = useState(false)
-  const [isLoading, fetchedData, hasError, setHasError] = useFetch(newUrl, [
+  const [isLoading, fetchedData, hasError, setHasError] = useFetch(
     newUrl,
-  ])
+    newUrl
+  )
   const [state, setState] = useState(defaultState)
   const Api_key = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
   useEffect(() => {
     setHasError(false)
-    console.log(hasError)
 
     if (fetching && fetchedData) {
       setFetchCities([fetchedData, ...fetchCities])
@@ -36,7 +36,7 @@ const Weather = () => {
       })
     }
     setFetching(false)
-  }, [fetchedData, setCityName, hasError])
+  }, [fetchedData, setCityName, hasError, fetchCities, setHasError])
   useEffect(() => {
     if (hasError && newUrl) {
       setState({
@@ -58,10 +58,11 @@ const Weather = () => {
     setState({ ...state, search: true })
     if (value) {
       if (fetchCities.length > 0) {
-        const existCity = fetchCities.filter(
-          (city) => city.name.toUpperCase() === value.toUpperCase()
-        )
-        if (!existCity[0]) {
+        let existCity = fetchCities.filter((city) => {
+          return city.name.toUpperCase() === value.toUpperCase()
+        })
+
+        if (!existCity.length) {
           setFetching(true)
           setNewUrl(url)
           setState({
