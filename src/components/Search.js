@@ -28,7 +28,7 @@ const Search = ({ handleSearch, cityName, setCityName }) => {
               </InputGroup.Prepend>
               <FormControl
                 id='inlineFormInputGroup'
-                placeholder='Inter City..'
+                placeholder='Enter City..'
                 onChange={(e) => setCityName(e.target.value)}
                 value={cityName}
                 autoComplete='off'
@@ -38,7 +38,7 @@ const Search = ({ handleSearch, cityName, setCityName }) => {
 
           <Col xs='auto'>
             <Button className='mb-2' onClick={(e) => handleSearch(e, cityName)}>
-              Submit
+              Search
             </Button>
           </Col>
         </Form.Row>

@@ -25,20 +25,20 @@ const City = () => {
   }
 
   return (
-    <Container className='my-5 '>
-      <h1>5 day Forecast</h1>
+    <Container className='py-5 '>
+      <h1 className='fontlight'>5 day Forecast</h1>
       {isLoading && <Loader />}
       {hasError && (
-        <p>
+        <p style={{ color: '#fff' }}>
           Sorry! failed to fetch the wither history for {city.name} ..please try
           agine later!
         </p>
       )}
       {!hasError && fiveDaysWeather.length === 5 && (
-        <Container fluid='sm'>
-          <h2>{city.name}</h2>
+        <>
+          <h2 style={{ color: '#fff' }}>{city.name}</h2>
           <Chart fiveDaysWeather={fiveDaysWeather} />
-        </Container>
+        </>
       )}
 
       <Link to='/'>Go Back</Link>

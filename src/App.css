@@ -4,8 +4,12 @@
   box-sizing: border-box;
 }
 
+
+
 .App {
   text-align: center;
+  background-color: rgb(51, 53, 51);
+  min-height: 100vh;
 }
 .container {
   display: flex;
@@ -17,10 +21,11 @@
   display: flex;
   flex-direction: column;
   border: gray solid 1px;
+  border-radius: 50px;
   background-image: url(https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
   background-repeat:no-repeat;
-  background-size:     cover; 
-min-height: 80vh;
+  background-size: cover; 
+  min-height: 80vh;
   width: 90%;
 }
 .search-form {
@@ -93,10 +98,7 @@ min-height: 80vh;
   outline: none;
   z-index: 1000;
 }
-.delete {
-  width: 2rem;
-  font-size: 2.5rem;
-}
+
 .weather-desc {
   margin-top: 0.5rem;
   display: flex;
@@ -110,9 +112,9 @@ min-height: 80vh;
   align-items: flex-start;
   padding: 1rem;
 }
-.cardContainer{ background-color: rgb(83, 250, 222) !important}
+.cardContainer{ background-color: rgb(200, 250, 83) !important}
 .customCard{
-  background-color: rgb(106, 229, 245) !important;
+  background-color: rgba(73, 34, 44, 0.678) !important;
 }
 .cardHeader{
   background-color: #fff !important;
@@ -124,16 +126,18 @@ min-height: 80vh;
 }
 .chartSmall{margin-top: 10%;
 }
+
+.fontlight{
+color: rgb(153, 214, 129);
+}
+
+
 @media  screen and (max-width: 600px) {
   *{
     font-size: .7rem !important;
   }
-  .chartSmall{max-width: 80%;
-    margin:30%  auto 0 auto ;
-  }
-   svg{
-    height: 200 !important;
-  }
+  
+  
   .temp {
     padding: .2rem;
   }

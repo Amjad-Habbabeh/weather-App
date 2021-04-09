@@ -138,7 +138,7 @@ const Weather = () => {
 
   return (
     <>
-      <Container className='my-5 '>
+      <Container className='py-5 '>
         <Container className='weather'>
           <h1 style={{ textAlign: 'center', padding: '2rem' }}>Weather App</h1>
           {isLoading && <Loader />}

@@ -22,8 +22,8 @@ const Chart = ({ fiveDaysWeather }) => {
         data={data}
         margin={{
           top: 20,
-          right: 30,
-          left: 0,
+          right: 2,
+          left: 2,
           bottom: 0,
         }}
       >
