@@ -17,7 +17,7 @@ const Search = ({ handleSearch, cityName, setCityName }) => {
         <Form.Row className='align-items-center'>
           <Col xs='auto'>
             <Form.Label htmlFor='inlineFormInputGroup' srOnly>
-              Inter City..
+              Enter City..
             </Form.Label>
             <InputGroup className='mb-2'>
               <InputGroup.Prepend>
@@ -32,6 +32,11 @@ const Search = ({ handleSearch, cityName, setCityName }) => {
                 onChange={(e) => setCityName(e.target.value)}
                 value={cityName}
                 autoComplete='off'
+                onKeyPress={(event) => {
+                  if (event.key === 'Enter') {
+                    handleSearch(event, cityName)
+                  }
+                }}
               />
             </InputGroup>
           </Col>
